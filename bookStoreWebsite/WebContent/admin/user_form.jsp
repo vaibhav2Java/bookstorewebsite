@@ -16,25 +16,25 @@
 
 	<jsp:directive.include file="header.jsp" />
 	<div align="center">
-		<h2>
+		<h1 class="pageheading">
 		<c:if test="${user !=null }">
 		Update user
 		</c:if>
 		<c:if test="${user ==null }">
 		Create New User
 		</c:if>
-		</h2>
+		</h1>
 	</div>
 	<div align="center">
 	<c:if test="${user !=null }">
-		<form action="update_user" method="post" id="userform">
+		<form action="update_user" method="post" id="userForm">
 		<input type="hidden" name="userId" value="${user.userId}">
 		</c:if>
 		<c:if test="${user ==null }">
-		<form action="create_user" method="post" id="userform">
+		<form action="create_user" method="post" id="userForm">
 		</c:if>
 		
-			<table>
+			<table class="form">
 
 				<tr>
 					<td align="right">Email:</td>
@@ -44,12 +44,12 @@
 
 				<tr>
 					<td align="right">First Name:</td>
-					<td align="left"><input type="text" id="firstname" name="firstName" size="20" value="${user.firstName}"/></td>
+					<td align="left"><input type="text" id="firstName" name="firstName" size="20" value="${user.firstName}"/></td>
 				</tr>
 
 				<tr>
 					<td align="right">Last Name:</td>
-					<td align="left"><input type="text" id="lastname" name="lastName" size="20" value="${user.lastName}"/></td>
+					<td align="left"><input type="text" id="lastName" name="lastName" size="20" value="${user.lastName}"/></td>
 				</tr>
 
 				<tr>
@@ -60,9 +60,10 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="submit" size="20" /> 
-						<input type="button" value="cancel" id="buttonCancel" size="20" /></td>
+					<td colspan="2" align="center">
+						<button type="submit"  size="20">submit</button>&nbsp;&nbsp;&nbsp;&nbsp; 
+						<button type="button" size="20">cancel</button>
+					</td>
 				</tr>
 
 			</table>
@@ -76,36 +77,31 @@
 
 </body>
 
-<script type="text/javascript">
-$("#userform").validate({
-	rules: {
-		email: {
-			required:true,
-			email:true
+<script>
+$(document).ready(function() {
+	$("#userForm").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			firstName: "required",
+			lastName: "required",
+			password: "required",
 		},
-		
-		firstname: "required",
-		lastname: "required",
-		password: "required",
-	},
-	
-	message: {
-		email: {
-			required: "Please enter email",
-			email: "Please enter a valid email address"
-			
+		message: {
+			email: {
+				required: "Please enter email.",
+				email: "Please enter a valid Email."
+			},
+			firstName: "Please enter Firstname",
+			lastName: "Please enter Lastname",
+			password: "Please enter password"
 		},
-		
-		firstname: "Please enter Firstname",
-		lastname: "Please enter Lastname",
-		password: "Please enter password",
-	}
 	});
-
+});
 $("#buttonCancel").click(function() {
 	history.go(-1);
 	});
-});
-	
 	</script>
 </html>

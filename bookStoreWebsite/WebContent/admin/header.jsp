@@ -22,23 +22,23 @@
 		</div>
 		<div >
 		<a href="list_category">
-		<img src="../images/category.png"/><br/>Category </a>
+		<img src="../images/category.png"/><br/>Category</a>
 		</div>
 		<div >
 		<a href="list_books">
-		<img src="../images/bookstack.png"/><br/>Books |</a>
+		<img src="../images/bookstack.png"/><br/>Books</a>
 		</div>
 		<div >
 		<a href="list_users">
-		<img src="../images/customer.png" /><br/>Customers |</a>
+		<img src="../images/customer.png" /><br/>Customers</a>
 		</div>
 		<div >
 		<a href="list_users">
-		<img src="../images/review.png"/><br/>Reviews |</a>
+		<img src="../images/review.png"/><br/>Reviews</a>
 		</div>
 		<div >
 		<a href="list_users">
-		<img src="../images/order.png"/><br/>Orders |</a>
+		<img src="../images/order.png"/><br/>Orders</a>
 		</div>
 	</div>
 	</div>

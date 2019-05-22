@@ -6,20 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage Users</title>
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 	<div align="center">
-		<h2>Users Management</h2>
+		<h2 class="pageheading">Users Management</h2>
 		<h3>
 			<a href="user_form.jsp"> Create new User</a>
 		</h3>
 	</div>
 	<c:if test="${message != null}">
 	<div align="center">
-		<h4>
-			<i> ${message} </i>
-		</h4>
+		<h4 class="message"> ${message} </h4>
 	</div>
 	</c:if>
 	<div align="center">
@@ -41,7 +43,7 @@
 					<td>${user.firstName}</td>
 					<td>${user.lastName}</td>
 					<td><a href="edit_user?id=${user.userId}"> Edit</a> 
-					<a href="javascript:confirmDelete(${ user.userId})"> Delete</a></td>
+					<a href="javascript:void(0);" name="delete_link"> Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -51,7 +53,16 @@
 
 
 	<jsp:directive.include file="footer.jsp" />
-	<script type="text/javascript">
+<script type="text/javascript">
+$(doument).ready(function() {
+	$(".delete_link").each(function() {
+			$(this).on("click",function(){
+				if(confirm('Are you sure you want to delete the user with id ' +userId + '?')){
+					window.location = 'delete_user?id=' + userId;
+				}
+			});
+		});
+	});
 	function confirmDelete(userId){
 		if(confirm('Are you sure you want to delete the user with id ' +userId + '?')){
 			window.location = 'delete_user?id=' + userId;
