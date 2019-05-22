@@ -76,7 +76,6 @@ public class CategoryServices {
 	}
 
 	public void editCategory() throws ServletException, IOException {
-
 		Integer categoryId= Integer.parseInt(request.getParameter("id"));
 		Category category = categoryDAO.get(categoryId);
 		String editPage="category_form.jsp";
@@ -91,7 +90,7 @@ public class CategoryServices {
 		String CategoryName = request.getParameter("categoryName");
 		Category categorybyId = categoryDAO.get(categoryId);
 		
-		
+//		
 //		
 //		if(userbyEmail != null && userbyEmail.getUserId() != userbyId.getUserId()) {
 //			String message="Could not update the User!! with email " +email +" already Exists." ;
@@ -106,6 +105,6 @@ public class CategoryServices {
 //			userDao.update(user);
 //			String message="User has been Updated Successfully!";
 //			listUser(message);
-		}
-		
+//		}
+	}
 }

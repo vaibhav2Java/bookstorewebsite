@@ -11,7 +11,6 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	public BookDAO(EntityManager entityManager) {
 		super(entityManager);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -52,6 +51,11 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 	public Book update(Book book) {
 		book.setLastUpdateTime(new Date());
 		return super.update(book);
+	}
+	
+	public Book searchBook() {
+		return null;
+		
 	}
 
 }

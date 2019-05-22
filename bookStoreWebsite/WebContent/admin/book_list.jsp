@@ -9,9 +9,9 @@
 <body>
 	<jsp:directive.include file="header.jsp" />
 	<div align="center">
-		<h2>Books Management</h2>
+		<h2 class="pageHeading">Books Management</h2>
 		<h3>
-			<a href="user_form.jsp"> Create new Book</a>
+			<a href="new_book"> Create new Book</a>
 		</h3>
 	</div>
 	<c:if test="${message != null}">
@@ -51,7 +51,7 @@
 					<td>${books.price}</td>
 					<td>${books.publishDate}</td>
 					<td>${books.lastUpdateTime}</td>
-					<td><a href="edit_book?id=${books.bookId}"> Edit</a> 
+					<td><a href="edit_book?bookId=${books.bookId}"> Edit</a> 
 					<a href="javascript:confirmDelete(${books.bookId})"> Delete</a></td>
 				</tr>
 			</c:forEach>
@@ -62,7 +62,7 @@
 	<script type="text/javascript">
 	function confirmDelete(bookId){
 		if(confirm('Are you sure you want to delete the user with id ' +bookId + '?')){
-			window.location = 'delete_book?id=' + bookId;
+			window.location = 'delete_book?bookId=' + bookId;
 		}
 	}
 	</script>

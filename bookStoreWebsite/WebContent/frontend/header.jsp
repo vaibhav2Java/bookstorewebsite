@@ -10,7 +10,7 @@
 <body>
 
 	<div align="center">
-		<img src="../images/mainlogo.jpg">
+		<img src="images/mainlogo.jpg" height="100" width="100">
 		<h1>this is header- logo search menu</h1>
 	</div>
 
