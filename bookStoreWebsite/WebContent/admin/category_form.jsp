@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,25 +14,24 @@
 
 	<jsp:directive.include file="header.jsp" />
 	<div align="center">
-		<h2>
-		<c:if test="${category !=null }">
+		<h1 class="pageheading">
+		<c:if test="${category !=null}">
 		Update Category
 		</c:if>
-		<c:if test="${category ==null }">
-		Create New User
+		<c:if test="${category !=null}">
+		Create New Category
 		</c:if>
-		</h2>
+		</h1>
 	</div>
 	<div align="center">
-	<c:if test="${category !=null }">
-		<form action="update_category" method="post" onsubmit="return validateFormInput()">
-		<input type="hidden" name="categoryId" value="${category.categoryId}">
+	<c:if test="${category !=null}">
+		<form action="update_category" method="post" id="categoryForm">
+		<input type="hidden" name="userId" value="${category.categoryId}">
 		</c:if>
-		<c:if test="${category ==null }">
-		<form action="create_category" method="post" onsubmit="return validateFormInput()">
+		<c:if test="${category == null}">
+		<form action="create_category" method="post" id="categoryForm">
 		</c:if>
-		
-			<table>
+			<table class="form">
 				<tr>
 					<td align="right">Category Name:</td>
 					<td align="left"><input type="text" id="categoryname" name="categoryName" size="20" value="${categoryName}"/></td>
@@ -43,33 +40,37 @@
 				<tr>
 					<td>&nbsp;</td>
 				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="submit" size="20" /> <input type="button" value="cancel"
-						size="20" onclick="javascipt:history.go(-1);" /></td>
+					<td colspan="2" align="center">
+						<button type="submit"  size="20">submit</button>&nbsp;&nbsp;&nbsp;&nbsp; 
+						<button type="button" id="buttonCancel" size="20">cancel</button>
+					</td>
 				</tr>
-
 			</table>
 		</form>
 	</div>
-
-
-
 	<jsp:directive.include file="footer.jsp" />
-
-
 </body>
 
-<script type="text/javascript">
-	function validateFormInput() {
-		var fieldCategoryName = document.getElementById("categoryname");
-		if (fieldCategoryName.value.length == 0) {
-			alert("Category is required!");
-			fieldCategoryName.focus();
-			return false;
-		}
-		return true;
-	}
-</script>
+<script>
+$(document).ready(function() {
+	$("#categoryForm").validate({
+		rules: {
+			categoryName: {
+				required: true,
+				categoryName: true
+			},
+		},
+		message: {
+			categoryName: {
+				required: "Please enter Category Name.",
+				categoryName: "Please enter a Category Name."
+			},
+		},
+	});
+});
 
+$("#buttonCancel").click(function() {
+	history.go(-1);
+	});
+	</script>
 </html>

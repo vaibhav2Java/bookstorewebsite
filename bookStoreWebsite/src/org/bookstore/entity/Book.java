@@ -33,7 +33,11 @@ import org.bookstore.entity2.Review;
 @Table(name = "book", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 @NamedQueries({ @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
 	@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
-	@NamedQuery(name = "Book.countAll", query = "SELECT Count(*) FROM Book b")})
+	@NamedQuery(name = "Book.countAll", query = "SELECT Count(*) FROM Book b"),
+	@NamedQuery(name = "Book.byCategory", query = "SELECT b FROM Book b JOIN " 
+	+ "Category c ON b.category.categoryId = c.categoryId AND c.categoryId = :catId"),
+	@NamedQuery(name = "Book.search", query = "SELECT b FROM Book b WHERE b.title LIKE :keyword"),
+	@NamedQuery(name = "Book.listNew", query = "SELECT b FROM Book b ORDER BY b.publishDate DESC")})
 
 public class Book implements java.io.Serializable {
 
@@ -186,7 +190,6 @@ public class Book implements java.io.Serializable {
 		this.reviews = reviews;
 	}
 	
-
 	@Transient
 	public String getBase64Image(){
 		this.base64Image = Base64.getEncoder().encodeToString(this.image);

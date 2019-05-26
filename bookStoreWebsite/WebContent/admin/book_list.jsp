@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage Books</title>
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
@@ -37,7 +40,6 @@
 				<th>lastUpdateTime</th>
 				<th>Actions</th>
 			</tr>
-
 			<c:forEach var="books" items="${listbooks}" varStatus="status">
 				<tr>
 					<td>${status.index +1}</td>
@@ -52,19 +54,25 @@
 					<td>${books.publishDate}</td>
 					<td>${books.lastUpdateTime}</td>
 					<td><a href="edit_book?bookId=${books.bookId}"> Edit</a> 
-					<a href="javascript:confirmDelete(${books.bookId})"> Delete</a></td>
+					<a href="javascript:void(0);" class="deleteLink" id="${books.bookId}"> Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-
 	<jsp:directive.include file="footer.jsp" />
+
 	<script type="text/javascript">
-	function confirmDelete(bookId){
-		if(confirm('Are you sure you want to delete the user with id ' +bookId + '?')){
-			window.location = 'delete_book?bookId=' + bookId;
-		}
-	}
+	$(document).ready(function(){
+		$(".deleteLink").each(function(){
+				$(this).on("click", function(){
+					id = $(this).attr("id");
+					if(confirm('Are you sure you want to delete the Book with id '+id + '?')) {
+						window.location = 'delete_category?bookId=' +id;
+					}
+				});
+			});
+		});
+
 	</script>
 </body>
 </html>

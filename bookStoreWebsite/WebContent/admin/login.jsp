@@ -22,16 +22,16 @@
 	</div>
 	</c:if>		
 		
-		<form id="formlogin" action="login" method="post">
-			<table>
+		<form id="formlogin" action="login" method="post" id="userForm">
+			<table class="form">
 				<tr>
 					<td>email</td>
-					<td><input id="email" type="email" name="email" size="20" /></td>
+					<td><input id="email" type="text" name="email" size="20" /></td>
 				</tr>
 				<tr>
 					<td>password</td>
-					<td><input id="email" name="password" type="password"
-						size="20" /></td>
+					<td><input id="password" name="password" type="password" size="20" />
+				</td>
 				</tr>
 
 				<tr>
@@ -45,9 +45,6 @@
 						<button type="submit">Forgot Password</button>
 					</td>
 				</tr>
-				
-
-
 			</table>
 
 
@@ -56,27 +53,23 @@
 
 </body>
 <script type="text/javascript">
-$("#formlogin").validate({
-	rules: {
-		email: {
-			required:true,
-			email:true
+$(document).ready(function(){
+	$("#userForm").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			password: "required",
 		},
-		
-		password: "required",
-	},
-	
-	message: {
-		email: {
-			required: "Please enter email",
-			email: "Please enter a valid email address"
-			
+		message: {
+			email: {
+				required: "Please enter email.",
+				email: "Please enter a valid Email."
+			},
+			password: "Please enter password"
 		},
-		
-		password: "Please enter password",
-	}
-});
-
+	});
 });
 	
 </script>

@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -13,8 +14,8 @@
 		<img src="images/mainlogo.jpg" height="100" width="100">
 		<h1>this is header- logo search menu</h1>
 	</div>
-
-	<div>
+	<div align="center">
+	<div >
 		<input type="text" name="keyword" size="50" /> 
 		<input type="button" value="search">
 		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -36,7 +37,7 @@
 	</c:if>
 		</c:forEach>
 	</div>
-
+</div>
 
 
 

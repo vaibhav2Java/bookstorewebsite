@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+
 public class JpaDAO<E> {
 
 	protected EntityManager entityManager;
@@ -23,6 +25,7 @@ public class JpaDAO<E> {
 		entityManager.flush();
 		entityManager.refresh(entity);
 		entityManager.getTransaction().commit();
+		
 		return entity;
 	}
 

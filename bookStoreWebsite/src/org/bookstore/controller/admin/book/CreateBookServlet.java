@@ -21,7 +21,6 @@ import org.bookstore.service.BookService;
 		fileSizeThreshold = 1024*10,
 		maxFileSize = 1024*300,
 		maxRequestSize= 1024*1024
-		
 )
 public class CreateBookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;

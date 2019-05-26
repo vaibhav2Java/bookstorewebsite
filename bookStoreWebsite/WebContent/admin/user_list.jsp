@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
@@ -43,31 +42,25 @@
 					<td>${user.firstName}</td>
 					<td>${user.lastName}</td>
 					<td><a href="edit_user?id=${user.userId}"> Edit</a> 
-					<a href="javascript:void(0);" name="delete_link"> Delete</a></td>
+					<a href="javascript:void(0);" class="deleteLink" id="${user.userId}"> Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-
-
 	</div>
-
-
 	<jsp:directive.include file="footer.jsp" />
-<script type="text/javascript">
-$(doument).ready(function() {
-	$(".delete_link").each(function() {
-			$(this).on("click",function(){
-				if(confirm('Are you sure you want to delete the user with id ' +userId + '?')){
-					window.location = 'delete_user?id=' + userId;
+<script >
+
+$(document).ready(function(){
+	$(".deleteLink").each(function(){
+			$(this).on("click", function(){
+				id = $(this).attr("id");
+				if(confirm('Are you sure you want to delete the user with id '+id + ' ?')) {
+					window.location = 'delete_user?id='+id;
 				}
 			});
 		});
 	});
-	function confirmDelete(userId){
-		if(confirm('Are you sure you want to delete the user with id ' +userId + '?')){
-			window.location = 'delete_user?id=' + userId;
-		}
-	}
+
 	</script>
 </body>
 </html>

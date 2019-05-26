@@ -71,17 +71,14 @@ public class BookService {
 		String isbn = request.getParameter("isbn");
 		String description = request.getParameter("description");
 		float price = Float.parseFloat(request.getParameter("price"));
-
 		DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY");
 		Date publishDate = dateFormat.parse(request.getParameter("publishDate"));
-
 		Book exitsBook = bookDAO.findByTitle(title);
 		if (exitsBook != null && exitsBook.getBookId() > 0) {
 			String message = "Could not Create the book " + title + " titled book is already present in database.";
 			listBooks(message);
 			return;
 		}
-
 		Book newBook = new Book();
 		newBook.setTitle(title);
 		newBook.setAuthor(author);
@@ -89,10 +86,8 @@ public class BookService {
 		newBook.setPrice(price);
 		newBook.setPublishDate(publishDate);
 		newBook.setDescription(description);
-
 		Category category = categoryDAO.get(categoryId);
 		newBook.setCategory(category);
-
 		Part part = request.getPart("bookImage");
 		if (part != null && part.getSize() > 0) {
 			long size = part.getSize();
@@ -102,7 +97,6 @@ public class BookService {
 			inputStream.close();
 			newBook.setImage(imageByte);
 		}
-
 		Book createdBook = bookDAO.create(newBook);
 		if (createdBook.getBookId() > 0) {
 			String message = "Book created Successfully!";
@@ -110,7 +104,7 @@ public class BookService {
 			listBooks(message);
 		}
 	}
-
+	
 	public void deleteBook() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
 		bookDAO.delete(bookId);
@@ -123,10 +117,9 @@ public class BookService {
 		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
 		List<Category> listcategory = categoryDAO.listAll();
 		Book exitsbook = bookDAO.get(bookId);
-		
-		String editPage = "book_form.jsp";
 		request.setAttribute("book", exitsbook);
 		request.setAttribute("listcategory", listcategory);
+		String editPage = "book_form.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
 	}
@@ -137,5 +130,27 @@ public class BookService {
 		String msgPage = "message.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(msgPage);
 		requestDispatcher.forward(request, response);
+	}
+
+	public void listBookBYCategory() throws ServletException, IOException {
+		
+		
+		Integer categoryId = Integer.parseInt(request.getParameter("id"));
+		System.out.println("categoryId:" +categoryId);
+		Category category = categoryDAO.get(categoryId);
+		List<Book> bookListbyCategory = bookDAO.listByCategory(categoryId);
+		List<Category> listcategory = categoryDAO.listAll();
+		
+		System.out.println("bookListbycategory:" +bookListbyCategory);
+		System.out.println("bookListbycategory:" +bookListbyCategory.get(1));
+		
+		request.setAttribute("bookListbyCategory", bookListbyCategory);
+		request.setAttribute("category", category);
+		request.setAttribute("listcategory", listcategory);
+
+		
+		String newPage = "frontend/book_list_bycategory.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(newPage);
+		dispatcher.forward(request, response);
 	}
 }
