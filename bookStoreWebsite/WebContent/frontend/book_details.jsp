@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="../css/style.css">
-<title>mybookstore</title>
+<title> ${book.title} </title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
@@ -13,7 +13,7 @@
 
 	<div align="center">
 		<br/><br/>
-		<h2>New Books:</h2>
+		<h2>Book Details</h2>
 			<div align="center">
 		<h1>${category.categoryName}</h1>
 		<hr>

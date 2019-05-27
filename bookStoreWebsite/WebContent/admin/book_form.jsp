@@ -75,7 +75,7 @@
 				<tr>
 					<td align="right">Book Image:</td>
 					<td align="left"><input type="file" id="bookImage" name="bookImage" size="20"/>
-						<img alt="logo" id="thumbnail" name="thumbnail" style="width:20%; margin-top:10px;" src=" data:image/jpeg;charset=utf-8;base64,${books.base64Image}" />
+						<img alt="logo" id="thumbnail" name="thumbnail" style="width:20%; margin-top:10px;" src="data:image/jpeg;charset=utf-8;base64,${book.base64Image}"/>
 					</td>
 				</tr>
 				<tr>

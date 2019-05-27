@@ -49,7 +49,7 @@
 					<td>${books.author}</td>
 					<td>${books.description}</td>
 					<td>${books.isbn}</td>
-					<td> <img  src="data:image/jpg;base64,${books.base64Image}" width="100" height="100"> </td>
+					<td> <img  src="data:image/jpg;base64,${books.base64Image}" width="100" height="110"> </td>
 					<td>${books.price}</td>
 					<td>${books.publishDate}</td>
 					<td>${books.lastUpdateTime}</td>

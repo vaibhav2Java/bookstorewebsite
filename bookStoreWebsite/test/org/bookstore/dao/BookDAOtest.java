@@ -61,10 +61,11 @@ public class BookDAOtest  extends BaseDaotest{
 	}
 	
 	@Test
-	public void SerchBookIntitle() {
+	public void searchBookIntitle() {
 		String keyword = "Java";
 		List<Book> book = bookDAO.searchBook(keyword);
-		assertEquals(0 ,book.size());
+		System.out.println(book.size());
+		assertEquals(5,book.size());
 	}
 	
 	@Test
@@ -73,5 +74,11 @@ public class BookDAOtest  extends BaseDaotest{
 		List<Book> listByCategory = bookDAO.listByCategory(categoryId);
 		System.out.println("Size of listByCategory:" +listByCategory.size());
 		assertTrue(listByCategory.size() > 0);
+	}
+	
+	@Test
+	public void testListNewBooks() {
+		List<Book> listNewBooks = bookDAO.listNewBooks();
+		assertEquals(listNewBooks.size(),4);
 	}
 }
