@@ -2,6 +2,7 @@ package org.bookstore.entity;
 // Generated 2 May, 2019 12:14:57 AM by Hibernate Tools 5.2.10.Final
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

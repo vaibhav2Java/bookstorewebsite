@@ -1,40 +1,40 @@
 package org.bookstore.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.bookstore.entity.Customer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CustomerDAOTest extends BaseDaotest {
-	public static CustomerDAO customerDAO;
+public class CustomerDAOTest {
+	
+	private static CustomerDAO customerDAO;
 
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BaseDaotest.setUpBeforeClass();
-		customerDAO = new CustomerDAO(entityManager);
+		customerDAO = new CustomerDAO();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		BaseDaotest.tearDownAfterClass();
+//		customerDAO.close();
 	}
 
 	@Test
 	public void testCreateCustomer() {
-		Customer customer = new Customer();
-		customer.setEmail("metooo@gmail.com");
-		customer.setFirstName("xyz");
-		customer.setLastName("mno");
-		customer.setPhone("9170203426");
-		customer.setPincode("209111");
-		customer.setAddress("A-114 2nd floor");
-		customer.setCity("new deldi");
-		customer.setCountry("India");
-		customer.setPassword("zbc");
-		Customer create = customerDAO.create(customer);
+		Customer newcustomer = new Customer();
+		newcustomer.setEmail("vaibhavbhatnagar96@gmail.com");
+		newcustomer.setFirstName("gmail");
+		newcustomer.setLastName("google");
+		newcustomer.setPhone("80******");
+		newcustomer.setPincode("209111");
+		newcustomer.setAddress("*******");
+		newcustomer.setCity("Kanpur ");
+		newcustomer.setCountry("India");
+		newcustomer.setPassword("1234");
+		Customer create = customerDAO.create(newcustomer);
 		assertTrue(create.getCustomerId() > 0);
 	}
 
@@ -53,5 +53,6 @@ public class CustomerDAOTest extends BaseDaotest {
 	@Test
 	public void testListAll() {
 	}
+	
 
 }

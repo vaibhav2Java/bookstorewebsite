@@ -3,7 +3,6 @@ package org.bookstore.service;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,27 +14,24 @@ import org.bookstore.entity.Category;
 
 
 public class CategoryServices {
-	private EntityManager entityManager;
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
 	
-	public CategoryServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public CategoryServices(HttpServletRequest request, HttpServletResponse response) {
 		super();
-		this.entityManager = entityManager;
+		categoryDAO = new CategoryDAO();
 		this.request = request;
 		this.response = response;
-		categoryDAO = new CategoryDAO(entityManager);
 	}
 	
 	public void listCategory( ) throws ServletException, IOException {
 		listCategory(null);
-	
 	}
 	
 
-	public void listCategory( String message) throws ServletException, IOException {
+	public void listCategory(String message) throws ServletException, IOException {
 		List<Category> listCategory = categoryDAO.listAll();
 		request.setAttribute("listCategory", listCategory);
 		if (message != null) {
@@ -48,8 +44,6 @@ public class CategoryServices {
 	}
 
 	public void createCategory() throws ServletException, IOException {
-		System.out.println("Category Service Create CategoryMethod!");
-		
 		String categoryName = request.getParameter("categoryName");
 		Category findByName = categoryDAO.findByName(categoryName);
 		if (findByName != null ) {

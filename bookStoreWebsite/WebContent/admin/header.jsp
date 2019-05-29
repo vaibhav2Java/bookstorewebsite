@@ -29,7 +29,7 @@
 		<img src="../images/bookstack.png"/><br/>Books</a>
 		</div>
 		<div >
-		<a href="list_users">
+		<a href="list_customer">
 		<img src="../images/customer.png" /><br/>Customers</a>
 		</div>
 		<div >
@@ -37,7 +37,7 @@
 		<img src="../images/review.png"/><br/>Reviews</a>
 		</div>
 		<div >
-		<a href="list_users">
+		<a href="list_order">
 		<img src="../images/order.png"/><br/>Orders</a>
 		</div>
 	</div>

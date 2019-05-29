@@ -1,45 +1,35 @@
 @charset "ISO-8859-1";
-
 #headermenu{
 	display: table;	
 }
-
 #headermenu div{
 	display: table-cell;
 	padding-right: 20px;
 }
-
 a:link{
 	color: cornflowerblue;
 	text-decoration: none;
 }
-
 a:visited {
 	color: indigo;
 }
-
 a:hover {
 	color: blue;
 	text-decoration: underline;
 }
-
 a:active {
 	color: red;
 }
-
 #headermenu a:link {
 	font-size: larger;
 }
-
 .pageheading{
 	color: olive;
 }
-
 table {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
-
 th,td{
 	padding: 10px;
 }
@@ -48,27 +38,22 @@ th {
 	color: cornsilk;
 	font-size: larger;
 }
-
 table.form{ 
 	border: 0;
 	padding: 4px;
 }
-
 button {
 	padding: 6px;
 	border-radius: 5px;
 }
-
 button[type=submit] {
 	 font-weight: bold;
 }
-
 input {
 	border: 1px solid green;
 	border-radius: 4px;
 	height: 20px;
 }
-
 button:hover {
 	background-color: white;
 	color: green;
@@ -77,9 +62,17 @@ button:hover {
 	font-style: italic;
 	color: blue;
 }
-
 .error{
 	color: red;
 	font-style:italic;
 	margin: 5px;
 }
+div.center{
+	text-align: center;
+}
+div.book{
+		display: inline-block;
+		margin: 20px;
+		text-align: center;
+}
+

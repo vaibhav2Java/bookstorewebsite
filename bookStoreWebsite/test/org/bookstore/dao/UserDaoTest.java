@@ -7,10 +7,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.bookstore.entity.Users;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class UserDaoTest {
+	private static UserDao userDAO;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		userDAO = new UserDao();
+	}
 
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		userDAO.close();
+	}
+	
 	@Test
 	public void testCreateUsers() {
 
@@ -21,7 +34,6 @@ public class UserDaoTest {
 		user1.setPassword("1234567890");
 		EntityManagerFactory createEntityManagerFactory = Persistence.createEntityManagerFactory("bookStroreWebsite");
 		EntityManager entityManager = createEntityManagerFactory.createEntityManager();
-		UserDao userDAO = new UserDao(entityManager);
 		user1=userDAO.create(user1);
 		entityManager.close();
 		createEntityManagerFactory.close();

@@ -12,23 +12,23 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CategoryDaoTest extends BaseDaotest{
+public class CategoryDaoTest {
 	public static CategoryDAO categoryDAO;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BaseDaotest.setUpBeforeClass();
-		categoryDAO = new CategoryDAO(entityManager);
+		categoryDAO = new CategoryDAO();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		BaseDaotest.tearDownAfterClass();
+
+
 	}
 
 	@Test
 	public void testCreateCategory() {
-		Category newCat1 = new Category("python");
+		Category newCat1 = new Category("Engineering");
 		Category category = categoryDAO.create(newCat1);
 		assertTrue(category != null && category.getCategoryId()>0);
 	}

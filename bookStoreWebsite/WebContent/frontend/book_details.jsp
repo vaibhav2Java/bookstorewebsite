@@ -11,7 +11,7 @@
 	<jsp:directive.include file="header.jsp" />
 	<hr>
 
-	<div align="center">
+	<div class="center">
 		<br/><br/>
 		<h2>Book Details</h2>
 			<div align="center">
@@ -20,14 +20,14 @@
 	</div>
 	<div align="center">
 		<c:forEach items="${listNewBooks}" var="book">
-			<div style="display: inline-block; margin: 10px;">
+			<div class="book">
 				<div>
 					<a href="view_book?id=${book.bookId}">
-					<img src="data:image/jpg;base64,${books.base64Image}" width="100" height="110">
+					<img src="data:image/jpg;base64,${book.base64Image}" width="100" height="110">
 					</a>
 				</div>
 				<div>
-				<a href="view_book?id=${book.bookId}"><b>${book.title}</b></div></a>
+				<a href="view_book?id=${book.bookId}"><b>${book.title}</b></a></div>
 				<div>Rating *****</div>
 				<div><i>${book.author}</i></div>
 				<div><b>${book.price}</b></div>

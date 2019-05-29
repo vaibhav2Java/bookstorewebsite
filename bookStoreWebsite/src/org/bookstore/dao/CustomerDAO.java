@@ -3,25 +3,24 @@ package org.bookstore.dao;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.bookstore.entity.Customer;
 
 public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer> {
 
-	public CustomerDAO(EntityManager entityManager) {
-		super(entityManager);
+	public CustomerDAO() {
 	}
 
 	@Override
 	public Customer create(Customer customer) {
+		System.out.println("CustomerDao Create Method:"+"Email" +customer.getEmail()+ "firstName" +customer.getFirstName()+ "LastName" +customer.getLastName());
 		customer.setRegisterDate(new Date());
-		return super.create(customer);
+		Customer create = super.create(customer);
+		System.out.println("Size:" +create.toString());
+		return create;
 	}
 
 	@Override
 	public Customer update(Customer t) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -37,13 +36,12 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
 	@Override
 	public List<Customer> listAll() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

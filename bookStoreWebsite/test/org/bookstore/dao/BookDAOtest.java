@@ -1,9 +1,9 @@
 package org.bookstore.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -18,19 +18,19 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class BookDAOtest  extends BaseDaotest{
+public class BookDAOtest{
 	
 	private static BookDAO bookDAO;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BaseDaotest.setUpBeforeClass();
-		bookDAO = new BookDAO(entityManager);
+		bookDAO = new BookDAO();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		BaseDaotest.tearDownAfterClass();
+		
+		bookDAO.close();
 
 
 	}
@@ -64,17 +64,31 @@ public class BookDAOtest  extends BaseDaotest{
 	public void searchBookIntitle() {
 		String keyword = "Java";
 		List<Book> book = bookDAO.searchBook(keyword);
-		System.out.println(book.size());
-		assertEquals(5,book.size());
+		assertEquals(4,book.size());
 	}
+	
+	@Test
+	public void searchBookInAuthor() {
+		String keyword = "Joshua Bloch";
+		List<Book> book = bookDAO.searchBook(keyword);
+		assertEquals(2,book.size());
+	}
+	
+	@Test
+	public void searchBookInDescription() {
+		String keyword = "Each chapter in the book consists of several";
+		List<Book> book = bookDAO.searchBook(keyword);
+		assertEquals(2,book.size());
+	}
+
 	
 	@Test
 	public void TestListByCategory() {
 		int categoryId=2;
 		List<Book> listByCategory = bookDAO.listByCategory(categoryId);
-		System.out.println("Size of listByCategory:" +listByCategory.size());
 		assertTrue(listByCategory.size() > 0);
 	}
+
 	
 	@Test
 	public void testListNewBooks() {

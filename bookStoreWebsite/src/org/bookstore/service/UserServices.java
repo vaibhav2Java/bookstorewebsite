@@ -3,9 +3,6 @@ package org.bookstore.service;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,26 +14,19 @@ import org.bookstore.entity.Users;
 public class UserServices {
 
 	private UserDao userDao;
-	private EntityManager entityManager;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 
 
-	public UserServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
+	public UserServices(HttpServletRequest request, HttpServletResponse response) {
 		super();
-
-
 		this.request = request;
 		this.response = response;
-		this.entityManager= entityManager;
-		userDao = new UserDao(entityManager);
-	
-	
+		userDao = new UserDao();
 	}
 
 	public void listUser() throws ServletException, IOException {
 		listUser(null);
-
 	}
 
 	public void listUser(String message) throws ServletException, IOException {

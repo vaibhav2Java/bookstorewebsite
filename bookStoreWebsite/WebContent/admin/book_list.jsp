@@ -19,9 +19,7 @@
 	</div>
 	<c:if test="${message != null}">
 	<div align="center">
-		<h4>
-			<i> ${message} </i>
-		</h4>
+		<h4 class="message"> <i> ${message} </i> </h4>
 	</div>
 	</c:if>
 	<div align="center">
@@ -67,7 +65,7 @@
 				$(this).on("click", function(){
 					id = $(this).attr("id");
 					if(confirm('Are you sure you want to delete the Book with id '+id + '?')) {
-						window.location = 'delete_category?bookId=' +id;
+						window.location = 'delete_book?bookId=' +id;
 					}
 				});
 			});

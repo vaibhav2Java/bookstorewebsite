@@ -1,4 +1,4 @@
-package org.bookstore.controller.admin.user;
+package org.bookstore.controller.frontend;
 
 import java.io.IOException;
 
@@ -8,20 +8,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.bookstore.service.UserServices;
+import org.bookstore.service.BookService;
 
-@WebServlet("/admin/delete_user")
-public class DeleteUserServlet extends HttpServlet {
+/**
+ * Servlet implementation class SearchBookServlet
+ */
+@WebServlet("/search")
+public class SearchBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public DeleteUserServlet() {
+    public SearchBookServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserServices userservice = new UserServices(request, response);
-		userservice.deleteUser();
-	}
+		
+		BookService searchBook = new BookService(request, response);
+		searchBook.searchBook();
 
+	
+	}
 
 }

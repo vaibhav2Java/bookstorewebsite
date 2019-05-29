@@ -4,14 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
 import org.bookstore.entity.Users;
 
 public class UserDao extends JpaDAO<Users> implements GenericDAO<Users> {
 
-	public UserDao(EntityManager entityManager) {
-		super(entityManager);
+	public UserDao() {
 	}
 
 	@Override
