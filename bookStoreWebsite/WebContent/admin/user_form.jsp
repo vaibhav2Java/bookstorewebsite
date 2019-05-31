@@ -78,7 +78,7 @@ $(document).ready(function(){
 			lastName: "required",
 			password: "required",
 		},
-		message: {
+		messages: {
 			email: {
 				required: "Please enter email.",
 				email: "Please enter a valid Email."

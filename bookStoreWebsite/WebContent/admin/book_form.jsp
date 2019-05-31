@@ -115,7 +115,7 @@ $(document).ready(function() {
 			description:"required"
 			
 		},
-		message: {
+		messages: {
 			title: {
 				required: "Please enter title.",
 				title: "Please enter a valid and unique title."

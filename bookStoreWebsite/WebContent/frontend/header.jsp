@@ -10,17 +10,18 @@
 </head>
 <body>
 
-	<div class="center">
+	<div align="center">
 		<img src="images/mainlogo.jpg" height="100" width="100">
 		<h1>this is header- logo search menu</h1>
 	</div>
-	<div class="center">
+	<div align="center">
 	<div >
 	<form action="search" method="get">
 		<input type="text" name="keyword" size="50" /> 
 		<input type="submit" value="search">
 		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		 <a	href="login">Sign In</a> | <a href="register">Register</a> | 
+		 <a	href="login">Sign In</a> 
+		 <a href="register">Register</a>  
 		 <a href="view_cart">Cart</a>
 	</form>	 
 	</div>

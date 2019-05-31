@@ -1,5 +1,7 @@
 package org.bookstore.dao;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,16 +14,14 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
 	@Override
 	public Customer create(Customer customer) {
-		System.out.println("CustomerDao Create Method:"+"Email" +customer.getEmail()+ "firstName" +customer.getFirstName()+ "LastName" +customer.getLastName());
 		customer.setRegisterDate(new Date());
 		Customer create = super.create(customer);
-		System.out.println("Size:" +create.toString());
 		return create;
 	}
 
 	@Override
-	public Customer update(Customer t) {
-		return null;
+	public Customer update(Customer customer) {
+		return super.update(customer);
 	}
 
 	@Override
@@ -36,13 +36,20 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 
 	@Override
 	public List<Customer> listAll() {
-		
-		return null;
+		return super.findwithNamedQuery("Customer.findAll");
 	}
 
 	@Override
 	public long count() {
-		return 0;
+		return super.countwithNamedQuery("Customer.countAll");
 	}
+	
+	public Customer findByEmail(String email) {
+		List<Customer> result = super.findwithNamedQuery("Customer.findByEmail", "email", email);
+		if (!result.isEmpty()) {
+			return result.get(0);
+		}
+		return null;
+	} 
 
 }

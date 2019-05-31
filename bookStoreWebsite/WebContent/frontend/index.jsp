@@ -11,14 +11,14 @@
 	<jsp:directive.include file="header.jsp" />
 	<hr>
 
-	<div class="center">
+	<div align="center">
 		<br/><br/>
 		<h2>New Books:</h2>
 			<div align="center">
 		<h1>${category.categoryName}</h1>
 		<hr>
 	</div>
-	<div class="center">
+	<div align="center">
 		<c:forEach items="${listNewBooks}" var="book">
 			<div style="display: inline-block; margin: 10px;">
 				<div>

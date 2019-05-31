@@ -60,7 +60,7 @@ $(document).ready(function() {
 				categoryName: true
 			},
 		},
-		message: {
+		messages: {
 			categoryName: {
 				required: "Please enter Category Name.",
 				categoryName: "Please enter a Category Name."

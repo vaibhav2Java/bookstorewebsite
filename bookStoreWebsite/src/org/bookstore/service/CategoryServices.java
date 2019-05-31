@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.bookstore.dao.CategoryDAO;
 import org.bookstore.entity.Category;
 
-
-
 public class CategoryServices {
 	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
@@ -29,7 +27,6 @@ public class CategoryServices {
 	public void listCategory( ) throws ServletException, IOException {
 		listCategory(null);
 	}
-	
 
 	public void listCategory(String message) throws ServletException, IOException {
 		List<Category> listCategory = categoryDAO.listAll();
@@ -57,14 +54,12 @@ public class CategoryServices {
 			String message ="Category " + categoryName +" has been create Successfully.";
 			listCategory(message);
 		}
-		
-		
 	}
 
 	public void deleteCategory() throws ServletException, IOException {
 		Integer categoryId=Integer.parseInt(request.getParameter("id"));
 		categoryDAO.delete(categoryId);
-		String message="User Deleted Successfully!";
+		String message="Category Deleted Successfully!";
 		listCategory(message);
 		
 	}
@@ -97,7 +92,7 @@ public class CategoryServices {
 //			Category category = new Category(categoryName);
 //			Users user = new Users(userId, email, firstName, lastName, password);
 //			userDao.update(user);
-//			String message="User has been Updated Successfully!";
+//			String message="Category has been Updated Successfully!";
 //			listUser(message);
 //		}
 	}

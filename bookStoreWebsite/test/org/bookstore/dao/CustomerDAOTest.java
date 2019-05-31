@@ -1,6 +1,10 @@
 package org.bookstore.dao;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.bookstore.entity.Customer;
 import org.junit.AfterClass;
@@ -19,13 +23,13 @@ public class CustomerDAOTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-//		customerDAO.close();
+		customerDAO.close();
 	}
 
 	@Test
 	public void testCreateCustomer() {
 		Customer newcustomer = new Customer();
-		newcustomer.setEmail("vaibhavbhatnagar96@gmail.com");
+		newcustomer.setEmail("vaibhav@gmail.com");
 		newcustomer.setFirstName("gmail");
 		newcustomer.setLastName("google");
 		newcustomer.setPhone("80******");
@@ -37,22 +41,51 @@ public class CustomerDAOTest {
 		Customer create = customerDAO.create(newcustomer);
 		assertTrue(create.getCustomerId() > 0);
 	}
-
+	
 	@Test
 	public void testUpdateCustomer() {
-	}
-
-	@Test
-	public void testGet() {
-	}
-
-	@Test
-	public void testDeleteObject() {
-	}
-
-	@Test
-	public void testListAll() {
+		Customer customer = customerDAO.get(1);
+		customer.setFirstName("vaibhav");
+		customer.setLastName("Bhatnagar");
+		Customer update = customerDAO.update(customer);
+		System.out.println(update.getFirstName());
+		assertTrue(update.getFirstName().equals("vaibhav"));
+		
 	}
 	
-
+	@Test
+	public void testGet() {
+		Integer id = 5;
+		Customer customer = customerDAO.get(id);
+		assertNotNull(customer);
+	
+	}
+	
+	@Test
+	public void testDeleteCustomer() {
+		Integer id = 5;
+		customerDAO.delete(id);
+		Customer customer = customerDAO.get(id);
+		assertNull(customer);
+	}
+	
+	@Test
+	public void testListAll() {
+		List<Customer> listAllCustomer = customerDAO.listAll();
+		assertTrue(listAllCustomer.size()>0);
+	}
+	
+	@Test
+	public void testCount() {
+		long count = customerDAO.count();
+		assertTrue(count>0);
+	}
+	
+	@Test
+	public void testFindByEmail() {
+		String email = "vaibhavbhatnagar96@gmail.com";
+		Customer findByEmail = customerDAO.findByEmail(email);
+		System.out.println(findByEmail.getFirstName());
+		assertNotNull(findByEmail);
+	}
 }

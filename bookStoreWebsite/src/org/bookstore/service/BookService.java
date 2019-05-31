@@ -47,7 +47,6 @@ public class BookService {
 		String booklist = "book_list.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(booklist);
 		dispatcher.forward(request, response);
-
 	}
 
 	public void createNewBook() throws ServletException, IOException {

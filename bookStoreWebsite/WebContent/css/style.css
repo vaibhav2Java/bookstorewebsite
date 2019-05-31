@@ -67,8 +67,8 @@ button:hover {
 	font-style:italic;
 	margin: 5px;
 }
-div.center{
-	text-align: center;
+.center{
+	text-align:center;
 }
 div.book{
 		display: inline-block;

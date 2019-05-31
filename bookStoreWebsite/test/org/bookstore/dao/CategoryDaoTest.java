@@ -28,7 +28,7 @@ public class CategoryDaoTest {
 
 	@Test
 	public void testCreateCategory() {
-		Category newCat1 = new Category("Engineering");
+		Category newCat1 = new Category("def");
 		Category category = categoryDAO.create(newCat1);
 		assertTrue(category != null && category.getCategoryId()>0);
 	}
@@ -53,7 +53,6 @@ public class CategoryDaoTest {
 	public void testDeleteObject() {
 		Integer catid= 22;
 		categoryDAO.delete(catid);
-		
 		Category category = categoryDAO.get(catid);
 		assertNull(category);
 	}
