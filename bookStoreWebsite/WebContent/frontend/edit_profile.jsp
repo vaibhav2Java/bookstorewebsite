@@ -10,46 +10,53 @@
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
-<title>Register Customer</title>
+<title>Edit My Profile</title>
 </head>
 <body>
 <jsp:directive.include file="header.jsp" />
 	<div align="center">
 		<h1 class="pageheading">
-		Customer Registration
+			Edit My Profile
 		</h1>
 	</div>
 	<div align="center">
-		<form action="register_customer" method="post" id="registerForm">
+		<form action="edit_myprofile" method="post" id="registerForm">
 			<table class="form">
 			<tr>
 					<td align="right">E-mail:</td>
-					<td align="left"><input type="text" id="email" name="email" /></td>
+					<td align="left">${loggedCustomer.email}(Can not changed)</td>
 				</tr>
 				<tr>
 					<td align="right">First Name:</td>
-					<td align="left"><input type="text" id="firstName" name="firstName"/></td>
+					<td align="left"><input type="text" id="firstName" name="firstName" value="${loggedCustomer.firstName}"/></td>
 				</tr>
 				<tr>
 					<td align="right">Last Name:</td>
-					<td align="left"><input type="text" id="lastName" name="lastName" /></td>
+					<td align="left"><input type="text" id="lastName" name="lastName" value="${loggedCustomer.lastName}"/></td>
 				</tr>
 				<tr>
 					<td align="right">Address Line:</td>
-					<td align="left"><input type="text" id="address" name="address"/></td>
+					<td align="left"><input type="text" id="address" name="address" value="${loggedCustomer.address}"/></td>
 				</tr>
 				<tr>
 					<td align="right">City:</td>
-					<td align="left"><input type="text" id="city" name="city"/></td>
+					<td align="left"><input type="text" id="city" name="city" value="${loggedCustomer.city}"/></td>
 				</tr>
 				<tr>
 					<td align="right">Country:</td>
-					<td align="left"><input type="text" id="country" name="country" /></td>
+					<td align="left"><input type="text" id="country" name="country" value="${loggedCustomer.country}" /></td>
 				</tr>
 				<tr>
 					<td align="right">Phone Number:</td>
-					<td align="left"><input type="text" id="phone" name="phone" /></td>
+					<td align="left"><input type="text" id="phone" name="phone" value="${loggedCustomer.phone}"/></td>
 				</tr>
+				<tr>
+					<td align="right">ZipCode:</td>
+					<td align="left"><input type="text" id="pincode" name="pincode" size="20" value="${loggedCustomer.pincode}"/></td>
+				</tr>				
+				<tr>
+				</tr>
+				
 				
 				<tr>
 					<td align="right">Password:</td>
@@ -58,10 +65,6 @@
 				<tr>
 					<td align="right">Confirm Password:</td>
 					<td align="left"><input type="text" id="confirmpassword" name="confirmpassword" /></td>
-				</tr>
-				<tr>
-					<td align="right">ZipCode:</td>
-					<td align="left"><input type="text" id="pincode" name="pincode" size="20" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>

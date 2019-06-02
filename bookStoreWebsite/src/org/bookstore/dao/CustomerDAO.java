@@ -1,9 +1,9 @@
 package org.bookstore.dao;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bookstore.entity.Customer;
 
@@ -50,6 +50,17 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 			return result.get(0);
 		}
 		return null;
+	}
+
+	public Customer checkLogin(String email, String password) {
+		Map <String,Object> parameter= new HashMap<>();
+		parameter.put("email", email);
+		parameter.put("password", password);
+		List<Customer> list = super.findwithNamedQuery("Customer.checkLogin", parameter);
+		if(!list.isEmpty()) {
+			return list.get(0);
+		}
+		return null;		
 	} 
 
 }

@@ -22,7 +22,7 @@
 	</div>
 	</c:if>		
 		
-		<form id="formlogin" action="login" method="post" id="userForm">
+		<form action="login" method="post" id="userForm">
 			<table class="form">
 				<tr>
 					<td>email</td>
@@ -61,8 +61,8 @@ $(document).ready(function(){
 				email: true
 			},
 			password: "required",
-		},
-		message: {
+		}
+		messages: {
 			email: {
 				required: "Please enter email.",
 				email: "Please enter a valid Email."

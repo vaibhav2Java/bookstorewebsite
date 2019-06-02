@@ -19,9 +19,16 @@
 	<form action="search" method="get">
 		<input type="text" name="keyword" size="50" /> 
 		<input type="submit" value="search">
-		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <c:if test="${loggedCustomer== null}">
 		 <a	href="login">Sign In</a> 
-		 <a href="register">Register</a>  
+		 <a href="register">Register</a>
+		 </c:if> 
+		 <c:if test="${loggedCustomer != null}">
+		 <a	href="view_profile">Welcome! ${loggedCustomer.firstName} ${loggedCustomer.lastName}</a> 
+		 <a href="view_order">My Orders</a>
+		 <a href="logout">Logout</a>
+		 </c:if> 
 		 <a href="view_cart">Cart</a>
 	</form>	 
 	</div>

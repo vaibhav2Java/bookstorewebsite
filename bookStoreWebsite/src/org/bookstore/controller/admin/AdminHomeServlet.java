@@ -29,7 +29,6 @@ public class AdminHomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String adminHomepage = "index.jsp";
-		System.out.println("Request comming to adminServlet");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(adminHomepage);
 		dispatcher.forward(request, response);
 	}

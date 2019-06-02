@@ -42,6 +42,17 @@ table.form{
 	border: 0;
 	padding: 4px;
 }
+table.customer{
+	
+}
+
+table.book{
+	width:80%;
+	border: 0;
+	margin:0 auto;
+}
+
+
 button {
 	padding: 6px;
 	border-radius: 5px;

@@ -88,4 +88,15 @@ public class CustomerDAOTest {
 		System.out.println(findByEmail.getFirstName());
 		assertNotNull(findByEmail);
 	}
+	
+	@Test
+	public void testCheckLoginSuccess() {
+		String email = "vaibhav26bhatnagar@gmail.com";
+		String password = "abc";
+		Customer checkLogin = customerDAO.checkLogin(email, password);
+		System.out.println(checkLogin.getFirstName());
+		assertNotNull(checkLogin);
+		
+
+	} 
 }

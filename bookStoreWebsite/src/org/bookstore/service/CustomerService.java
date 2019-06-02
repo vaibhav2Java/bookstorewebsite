@@ -167,4 +167,44 @@ public class CustomerService {
 		requestDispatcher.forward(request, response);
 
 	}
+	
+	public void showlogin() throws ServletException, IOException {
+		showlogin(null);
+	}
+
+	public void showlogin(String message) throws ServletException, IOException {
+		if(message == null) {
+			message = "Please Enter credentials to login your Account.";
+		}
+		request.setAttribute("message", message);
+		String loginPage = "frontend/login.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginPage);
+		requestDispatcher.forward(request, response);
+	}
+
+	public void doLogin() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		Customer customer = customerDAO.checkLogin(email,password);
+		if(customer == null) {
+			String message = "You have entered a invalid email or password.";
+			request.setAttribute("message", message);
+			showlogin(message);
+		}else {
+			request.getSession().setAttribute("loggedCustomer", customer);
+			showProfile();
+		}		
+	}
+	
+	public void showProfile() throws ServletException, IOException {
+		String messagePage = "frontend/customer_profile.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(messagePage);
+		requestDispatcher.forward(request, response);
+	}
+
+	public void showCustomerProfileEditForm() throws ServletException, IOException {
+		String editPage = "frontend/edit_profile.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+	}
 }
