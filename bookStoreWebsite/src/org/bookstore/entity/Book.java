@@ -59,6 +59,14 @@ public class Book implements java.io.Serializable {
 
 	public Book() {
 	}
+	
+
+	public Book(Integer bookId) {
+		super();
+		this.bookId = bookId;
+	}
+
+
 
 	public Book(Category category, String title, String author, String description, String isbn, byte[] image,
 			float price, Date publishDate, Date lastUpdateTime) {
@@ -86,7 +94,7 @@ public class Book implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 		this.reviews = reviews;
 	}
-
+//Ttorial.com
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -184,7 +192,7 @@ public class Book implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
 		return this.reviews;
 	}
@@ -202,7 +210,50 @@ public class Book implements java.io.Serializable {
 	@Transient
 	public void setBase64Image( String base64Image) {
 		this.base64Image=base64Image;
-		
 	}
+	
+	@Transient
+	public float getAverageRating() {
+		float averageRating = 0.0f;
+		float sum = 0.0f;
+		if(reviews.isEmpty()) {
+			return 0.0f;
+		}
+		
+		for (Review review : reviews) {
+			sum += review.getRating();
+		}
+		
+		averageRating = sum/reviews.size();
+		
+		return averageRating;
+	}
+	
+	@Transient
+	public String getRatingStar() {
+		float averageRating = getAverageRating();
+		return getRatingString(averageRating);
+	}
+	
+	@Transient
+	public String getRatingString(float averageRating) {
+		String result = "";
+		int numberofstarsOn = (int) averageRating; 
+		
+		for (int i = 1; i <= numberofstarsOn; i++) {
+			result += "on,";
+		}
+		int next = numberofstarsOn+1;
+		if (averageRating>numberofstarsOn) {
+			result+="half,";
+			next++;
+		}
+		for (int j = next; j <= 5; j++) {
+			result += "off,";
+		}
+		return result.substring(0, result.length()-1);
+	}
+
+
 
 }

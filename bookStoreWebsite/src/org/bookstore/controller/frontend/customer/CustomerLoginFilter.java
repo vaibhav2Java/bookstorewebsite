@@ -1,6 +1,7 @@
 package org.bookstore.controller.frontend.customer;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -9,12 +10,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @WebFilter("/*")
 public class CustomerLoginFilter implements Filter {
+	
+	private static final String [] LOGINURLs = {
+			"/view_profile","/edit_profile","/update_profile"
+	};
 
     public CustomerLoginFilter() {
 
@@ -38,14 +42,25 @@ public class CustomerLoginFilter implements Filter {
 		
 		
 		boolean loggedIn = session != null && session.getAttribute("loggedCustomer") != null;
-		
-		if (!loggedIn && path.startsWith("/view_profile")) {
+		 String requestURL = httpRequest.getRequestURI().toString();
+		 
+		if (!loggedIn && isloginRequires(requestURL) ) {
 			String loginPage = "frontend/login.jsp";
 			RequestDispatcher requestDispatcher = httpRequest.getRequestDispatcher(loginPage);
 			requestDispatcher.forward(request, response);
 		}else {
 		chain.doFilter(request, response);
 		}
+	}
+	
+	public boolean isloginRequires(String requestURL) {
+		for(String loginRequiredURL : LOGINURLs) {
+			if(requestURL.contains(loginRequiredURL)) {
+				return true;
+			}
+		}
+		return false;
+		
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

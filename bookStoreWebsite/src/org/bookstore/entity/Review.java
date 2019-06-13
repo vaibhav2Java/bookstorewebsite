@@ -1,14 +1,19 @@
 package org.bookstore.entity;
-// Generated 2 May, 2019 12:14:57 AM by Hibernate Tools 5.2.10.Final
+// Generated 6 Jun, 2019 1:40:50 AM by Hibernate Tools 5.2.10.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,14 +23,13 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "bookstoredb")
+@NamedQueries({ @NamedQuery(name = "Review.findAll", query = "SELECT r FROM Review r"),
+	@NamedQuery(name = "Review.countAll", query = "SELECT Count(*) FROM Review r"),
+	@NamedQuery(name = "Review.findbyCustomerAndBook", query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId"
+	+" AND r.book.bookId =:bookId")})
 public class Review implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	private int reviewId;
+	private Integer reviewId;
 	private Book book;
 	private Customer customer;
 	private int rating;
@@ -36,9 +40,7 @@ public class Review implements java.io.Serializable {
 	public Review() {
 	}
 
-	public Review(int reviewId, Book book, Customer customer, int rating, String headline, String comment,
-			Date reviewTime) {
-		this.reviewId = reviewId;
+	public Review(Book book, Customer customer, int rating, String headline, String comment, Date reviewTime) {
 		this.book = book;
 		this.customer = customer;
 		this.rating = rating;
@@ -48,17 +50,18 @@ public class Review implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "review_id", unique = true, nullable = false)
-	public int getReviewId() {
+	public Integer getReviewId() {
 		return this.reviewId;
 	}
 
-	public void setReviewId(int reviewId) {
+	public void setReviewId(Integer reviewId) {
 		this.reviewId = reviewId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "book_id", nullable = false)
 	public Book getBook() {
 		return this.book;
@@ -68,7 +71,7 @@ public class Review implements java.io.Serializable {
 		this.book = book;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id", nullable = false)
 	public Customer getCustomer() {
 		return this.customer;

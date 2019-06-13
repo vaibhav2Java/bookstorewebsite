@@ -1,7 +1,5 @@
 package org.bookstore.service;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -98,7 +96,7 @@ public class CustomerService {
 		}
 	}
 
-	public void updateCustomer() throws ServletException, IOException {
+	public void updateCustomer(Customer customer) throws ServletException, IOException {
 		String message=null;
 		Integer customerId = Integer.parseInt(request.getParameter("customerId"));
 		String email = request.getParameter("email");
@@ -139,7 +137,7 @@ public class CustomerService {
 		if (existCustomer != null) {
 			message = "Could not Register a customer. A customer is already registered with this email " +email;
 		}else {
-			Customer customer = new Customer();
+			Customer customer1 = new Customer();
 			String firstName = request.getParameter("firstName");
 			String lastName = request.getParameter("lastName");
 			String address = request.getParameter("address");
@@ -148,16 +146,21 @@ public class CustomerService {
 			String phone = request.getParameter("phone");
 			String password = request.getParameter("password");
 			String pincode = request.getParameter("pincode");
-			customer.setEmail(email);
-			customer.setFirstName(firstName);
-			customer.setLastName(lastName);
-			customer.setAddress(address);
-			customer.setCity(city);
-			customer.setCountry(country);
-			customer.setPhone(phone);
-			customer.setPassword(password);
-			customer.setPincode(pincode);
-			customerDAO.create(customer);
+			
+			if(email!=null && !email.equals("")) {
+				customer1.setEmail(email);
+			}
+			customer1.setFirstName(firstName);
+			customer1.setLastName(lastName);
+			customer1.setAddress(address);
+			customer1.setCity(city);
+			customer1.setCountry(country);
+			customer1.setPhone(phone);
+			if(email!=null && !email.equals("")) {
+				customer1.setPassword(password);
+			}
+			customer1.setPincode(pincode);
+			customerDAO.create(customer1);
 			message = "You have  Registered Successfully ! Thank You!!. </br>" 
 			+"<a href='login'>Click Here <a> for Login<a>";
 		}
@@ -206,5 +209,17 @@ public class CustomerService {
 		String editPage = "frontend/edit_profile.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
+	}
+
+	public void updateCustomerProfile() throws ServletException, IOException {
+		
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		updateCustomer(customer);
+		customerDAO.update(customer);
+		showProfile();
+	}
+
+	public void updateCustomer() {
+		
 	}
 }

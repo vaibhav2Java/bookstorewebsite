@@ -55,9 +55,8 @@
 					<td align="left"><input type="text" id="pincode" name="pincode" size="20" value="${loggedCustomer.pincode}"/></td>
 				</tr>				
 				<tr>
+				<td colspan="2" align="center"> please leave blank</td>
 				</tr>
-				
-				
 				<tr>
 					<td align="right">Password:</td>
 					<td align="left"><input type="text" id="password" name="password" /></td>
@@ -93,9 +92,7 @@ $(document).ready(function() {
 			city:"required",
 			country:"required",
 			phone:"required",
-			password:"required",
 			confirmpassword:{
-				required : true,
 				equalTo : "#password"
 			},
 			pincode:"required"
@@ -112,9 +109,7 @@ $(document).ready(function() {
 			city: "Please enter City",
 			country: "Please enter Country",
 			phone: "Please enter a valid Phone Number",
-			password: "Please enter a Password",
 			confirmpassword:{
-				required: "Please enter a Confirm Password",
 				equalTo :"Password does not match Password"
 			},
 			pincode: "Please enter a valid Pincode"

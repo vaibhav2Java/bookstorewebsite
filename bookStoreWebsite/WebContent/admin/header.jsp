@@ -33,7 +33,7 @@
 		<img src="../images/customer.png" /><br/>Customers</a>
 		</div>
 		<div >
-		<a href="list_users">
+		<a href="list_review">
 		<img src="../images/review.png"/><br/>Reviews</a>
 		</div>
 		<div >
