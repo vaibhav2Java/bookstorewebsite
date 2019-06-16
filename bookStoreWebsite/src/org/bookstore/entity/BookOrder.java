@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +23,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "book_order", catalog = "bookstoredb")
+@NamedQueries({@NamedQuery(name = "BookOrder.findAll", query = "SELECT bo FROM BookOrder bo"),
+		@NamedQuery(name = "BookOrder.countAll",query="SELECT Count(*) FROM BookOrder bo")})
 public class BookOrder implements java.io.Serializable {
 
 	/**

@@ -20,7 +20,5 @@ public class WriteReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService reviewService = new ReviewService(request, response);
 		reviewService.showReviewForm();
-		
 	}
-
 }

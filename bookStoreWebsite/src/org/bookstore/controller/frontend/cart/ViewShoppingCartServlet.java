@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bookstore.dao.BookDAO;
 import org.bookstore.entity.Book;
 
 @WebServlet("/view_cart")
@@ -27,10 +28,8 @@ public class ViewShoppingCartServlet extends HttpServlet {
 			request.getSession().setAttribute("cart", shoppingCart);
 		}
 		
-		Book book = new Book();
-		book.setTitle("Java Black(Dreamtech)");
-		book.setPrice(20);
-		
+		BookDAO bookDao = new BookDAO();
+		Book book = bookDao.get(4);
 		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
 		shoppingCart.addItem(book);
 		

@@ -52,7 +52,9 @@ table.book{
 	margin:0 auto;
 }
 
-
+table.normal{
+	border: 0;
+}
 button {
 	padding: 6px;
 	border-radius: 5px;
@@ -86,4 +88,7 @@ div.book{
 		margin: 20px;
 		text-align: center;
 }
-
+#book-title{
+	font-size: large;
+	font-style: italic;
+}

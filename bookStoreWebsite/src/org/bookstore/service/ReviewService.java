@@ -8,7 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bookstore.dao.BookDAO;
 import org.bookstore.dao.ReviewDao;
+import org.bookstore.entity.Book;
 import org.bookstore.entity.Review;
 
 public class ReviewService {
@@ -73,7 +75,11 @@ public class ReviewService {
 	}
 
 	public void showReviewForm() throws ServletException, IOException {
-		String reviewFrom = "frontend/reviewForm.jsp";
+		Integer bookId = Integer.parseInt(request.getParameter("book_Id"));
+		BookDAO bookDAO = new BookDAO();
+		Book book = bookDAO.get(bookId);
+		request.setAttribute("book", book);
+		String reviewFrom = "frontend/review_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(reviewFrom);
 		dispatcher.forward(request, response);
 	}

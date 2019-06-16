@@ -34,14 +34,13 @@ public class ReviewDaoTest {
 		Customer customer = new Customer();
 		Review reviews = new Review();
 		book.setBookId(4);		
-		customer.setCustomerId(14);
+		customer.setCustomerId(23);
 		reviews.setBook(book);
 		reviews.setCustomer(customer);
-		reviews.setHeadline("this is a good book");
-		reviews.setRating(4);
-		reviews.setComment("i have just read this book");
+		reviews.setHeadline("awesome book for beginners");
+		reviews.setRating(3);
+		reviews.setComment("i have learn a lot from this book.");
 		Review create = reviewDao.create(reviews);
-		System.out.println("review comment" +create.getComment());
 		assertTrue(create.getReviewId()>0);
 	}
 	

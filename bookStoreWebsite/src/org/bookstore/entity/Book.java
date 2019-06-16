@@ -4,9 +4,11 @@ package org.bookstore.entity;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -194,10 +196,20 @@ public class Book implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
-		return this.reviews;
+		TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
+
+			@Override
+			public int compare(Review review1, Review review2) {
+				return review2.getReviewTime().compareTo(review1.getReviewTime());
+			}
+		});
+		
+		sortedReviews.addAll(reviews);
+		return sortedReviews;
 	}
 
 	public void setReviews(Set<Review> reviews) {
+		
 		this.reviews = reviews;
 	}
 	
@@ -255,5 +267,29 @@ public class Book implements java.io.Serializable {
 	}
 
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+		return result;
+	}
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (bookId == null) {
+			if (other.bookId != null)
+				return false;
+		} else if (!bookId.equals(other.bookId))
+			return false;
+		return true;
+	}
 }

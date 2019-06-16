@@ -10,8 +10,9 @@ public class ShoppingCart {
 	private Map <Book,Integer> cart = new HashMap<>();
 	
 	public void addItem(Book book) {
+		System.out.println("Calling is comming additem" +book.getTitle());
 		if(cart.containsKey(book)) {
-			Integer quantity = cart.get(book)+1;
+			Integer quantity = cart.get(book) + 1;
 			cart.put(book, quantity);
 		}else {
 			cart.put(book, 1);
@@ -19,14 +20,14 @@ public class ShoppingCart {
 	}
 	
 	public Map<Book, Integer> getItems(){
-		return this.cart;
+		return cart;
 	}
 	
-	public void removeItem( Book book) {
+	public void removeItem(Book book) {
 		cart.remove(book);
 	}
 	
-	public int totalQuatity() {
+	public int getTotalQuantity() {
 		int total= 0;
 		
 		Iterator<Book> iterator = cart.keySet().iterator();
@@ -54,6 +55,10 @@ public class ShoppingCart {
 	public void clearCart() {
 		cart.clear();
 	}
-
-
-}
+	
+	
+	public int getTotalItems() {
+		return cart.size();
+	}
+	
+ }

@@ -50,7 +50,6 @@ public class ReviewDao extends JpaDAO<Review> implements GenericDAO<Review> {
 			return result.get(0);
 		}
 		return null;
-		
 	}
 
 }
