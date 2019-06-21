@@ -7,29 +7,28 @@ import java.util.Map;
 import org.bookstore.entity.Book;
 
 public class ShoppingCart {
-	private Map <Book,Integer> cart = new HashMap<>();
-	
+	private Map<Book, Integer> cart = new HashMap<>();
+
 	public void addItem(Book book) {
-		System.out.println("Calling is comming additem" +book.getTitle());
-		if(cart.containsKey(book)) {
+		if (cart.containsKey(book)) {
 			Integer quantity = cart.get(book) + 1;
 			cart.put(book, quantity);
-		}else {
+		} else {
 			cart.put(book, 1);
 		}
 	}
-	
-	public Map<Book, Integer> getItems(){
+
+	public Map<Book, Integer> getItems() {
 		return cart;
 	}
-	
+
 	public void removeItem(Book book) {
 		cart.remove(book);
 	}
-	
+
 	public int getTotalQuantity() {
-		int total= 0;
-		
+		int total = 0;
+
 		Iterator<Book> iterator = cart.keySet().iterator();
 		while (iterator.hasNext()) {
 			Book book = (Book) iterator.next();
@@ -39,9 +38,16 @@ public class ShoppingCart {
 		return total;
 	}
 	
+	public void updateCart(int [] bookIds, int[] quantities) {
+		for(int i=0; i<bookIds.length;i++) {
+			Book key = new Book(bookIds [i]);
+			Integer value = quantities[i];
+			cart.put(key, value);
+		}
+	}
+
 	public double getTotalAmount() {
-		double total= 0;
-		
+		double total = 0;
 		Iterator<Book> iterator = cart.keySet().iterator();
 		while (iterator.hasNext()) {
 			Book book = (Book) iterator.next();
@@ -51,14 +57,12 @@ public class ShoppingCart {
 		}
 		return total;
 	}
-	
+
 	public void clearCart() {
 		cart.clear();
 	}
-	
-	
+
 	public int getTotalItems() {
 		return cart.size();
 	}
-	
- }
+}

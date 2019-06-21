@@ -29,8 +29,9 @@
 		</c:if>
 		
 		<c:if test="${cart.totalItems > 0}">
-			<div>
-				<form action="">
+			
+				<form action="update_cart" method="post" id="cartForm">
+					<div>
 					<table border="1">
 						<tr>
 						<th>No</th>
@@ -49,10 +50,12 @@
 							<td>	
 							 	<span id="book-title">  ${items.key.title} </span> 
 							 </td>
-							<td> ${items.value}</td>
+							<td>
+							<input type="hidden" name="bookId" value="${items.key.bookId}"/>
+							<input type="text" name="quantity${status.index +1}" value="${items.value}" size="5"/></td>
 							<td> <fmt:formatNumber value="${items.key.price}" type="currency"/></td>
 							<td> <fmt:formatNumber value="${items.value * items.key.price}" type="currency"/> </td>
-							<td> <a href="">remove</a> </td>
+							<td> <a href="remove_from_cart?book_id=${items.key.bookId}">remove</a> </td>
 						</tr>
 						</c:forEach>
 						<tr>
@@ -64,38 +67,52 @@
 							<td colspan="2" > <fmt:formatNumber value="${cart.totalAmount}" type="currency"/> </td>
 						</tr>
 					</table>
+					</div>
+					<div>
+					<table class="normal">
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td> </td>
+					<td> <button type="submit">Update Cart</button></td>
+					<td> <input type="button" id="clearcart" value="Clear Cart"/></td>
+					<td> <a href="${pageContext.request.contextPath}/">Continue Shopping</a> </td>
+					<td> <a href="">Check out</a> </td>
+					
+					</tr>
+					</table>
+					
+					</div>
 				</form>
-			</div>
-
-
+			
 		</c:if>
-		
-		
-		
-		
-		
-		
-		
 	</div>
 <jsp:directive.include file="footer.jsp" />
 </body>
 <script >
 
 $(document).ready(function() {
-	$("#userForm").validate({
+	$("#clearcart").click(function() {
+		window.location = 'clear_cart';
+		});
+
+	$("#cartForm").validate({
 		rules: {
-			email :{
-				required: true,
-				email:true
-			},
-			password:"required",
+			<c:forEach items="${cart.items}" var="items" varStatus="status">
+			quantity${status.index + 1}: { 
+				required:true, 
+				number:true,
+				min:1
+			}
+			</c:forEach>
 		},
 		messages: {
-			email :{ 
-				required :" Please enter a Email Address",
-				email :"Please Enter a Valid Email Address"
-			},
-			password: "Please enter a Password",
+			<c:forEach items="${cart.items}" var="items" varStatus="status">
+			quantity${status.index + 1}: {
+				required:"please enter the quantity.",
+				number:"Quantity must be a number.",
+				min:"quantity must be greater than 0."
+			}
+			</c:forEach>
 		},
 	});
 });

@@ -33,7 +33,7 @@
 				<td valign="top" rowspan="2" width="20%"> 
 				<h2>$${book.price}</h2>
 				<br><br>
-				<button type="submit">add to cart</button>
+				<button id="buttonAddToCart" >add to cart</button>
 				 </td>
 			</tr>
 			<tr>
@@ -86,6 +86,10 @@
 	$("#buttonWriteReview").click(function() {
 		window.location = 'write_review?book_Id=' + ${book.bookId};
 		});
+	$("#buttonAddToCart").click(function() {
+		window.location = 'add_to_cart?book_Id=' + ${book.bookId};
+		});
+	
 	});
 	</script>
 </body>
